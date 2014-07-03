@@ -60,13 +60,14 @@ cpsLimit.master.bind = function (worker) {
     }
 
     var self = this;
+    console.log('bind worker id: ' + worker.process.pid)
     this.workers.push(worker); 
-
     worker.on('message', function(msg) {
         if (self.disabled || 'object' !== typeof msg) {
             return false;
         }
         if (msg.action === 'cpsPlus') {
+            console.log('worker' + this.process.pid)
             self.count(msg.id);
         }
     })
@@ -79,16 +80,17 @@ cpsLimit.master.count = function (id) {
         this.counters = {};
         if (this.isLimited[id]) {
             this.isLimited[id] = false;
-            this.informWorkers({action: 'cpslimit', id: id, isLimited: false});
+            this.informWorkers({action: 'cpsLimit', id: id, isLimited: false});
         }
     }
     if (!this.counters[id]) {
         this.counters[id] = 0;
     }
     this.counters[id] += 1;
+    console.log('counters is' + this.counters[id])
     if (this.counters[id] > (this.cpsConf[id] || 0)) {
         this.isLimited[id] = true;
-        this.informWorkers({action: 'cpslimit', id: id, isLimited: true}); 
+        this.informWorkers({action: 'cpsLimit', id: id, isLimited: true}); 
     }
 
 };
