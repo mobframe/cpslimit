@@ -1,0 +1,24 @@
+{
+  "name": "cpsLimit",
+  "description": "",
+  "version": "0.0.1",
+  "author": {
+    "name": "luyan",
+    "email": "luyan01@baidu.com"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mobframe/cpslimit"
+  },
+  "main": "index",
+  "engines": {
+    "node": "*"
+  },
+  "readme": "",
+  "_id": "cpsLimit@0.0.1",
+  "_from": "cpsLimit"
+}
